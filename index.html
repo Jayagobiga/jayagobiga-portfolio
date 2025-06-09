@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jayagobiga V I - Portfolio</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #121212;
+      color: #ddd;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #61dafb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3, h4 {
+      color: #a27fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1.2px;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 15px;
+    }
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #1a1a1a;
+      padding: 1rem 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 25px;
+    }
+    nav ul li a {
+      font-weight: bold;
+      color: #ddd;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #a27fff;
+    }
+    /* Sections */
+    section {
+      padding: 100px 0 60px; /* top padding to offset fixed nav */
+      min-height: 100vh;
+    }
+    /* Hero */
+    #home {
+      background: linear-gradient(135deg, #1f1f38, #4b0082);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #home h1 {
+      font-size: 2.8rem;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+    #home p {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      color: #aaa;
+      animation: fadeInUp 1.4s ease forwards;
+    }
+    #home button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      color: #4b0082;
+      background: #a27fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px #a27fff88;
+      transition: background-color 0.3s ease;
+      animation: fadeInUp 1.6s ease forwards;
+    }
+    #home button:hover {
+      background-color: #7f5fff;
+    }
+    /* Particle effect placeholder */
+    #particles {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      opacity: 0.2;
+      background: radial-gradient(circle at center, #a27fff 5%, transparent 70%);
+      animation: pulse 5s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    /* About */
+    #about {
+      background: #181818;
+      color: #ccc;
+    }
+    #about h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #a27fff;
+    }
+    #about .bio {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #eee;
+      text-align: center;
+    }
+    /* Skills */
+    .skills {
+      max-width: 700px;
+      margin: 1rem auto 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .skill {
+      flex: 1 1 120px;
+      background: #222;
+      border-radius: 25px;
+      padding: 10px 20px;
+      color: #a27fff;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 0 8px #a27fff55;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    .skill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #a27fffcc;
+    }
+
+    /* Skill bars */
+    .skill-bar {
+      background: #333;
+      border-radius: 25px;
+      margin: 15px auto;
+      width: 80%;
+      height: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 8px #a27fff44;
+    }
+    .skill-level {
+      height: 100%;
+      background: linear-gradient(90deg, #a27fff, #7f5fff);
+      border-radius: 25px;
+      width: 0%;
+      animation: fillSkill 2s forwards;
+    }
+    .skill-label {
+      text-align: center;
+      margin-bottom: 5px;
+      color: #ccc;
+      font-weight: 600;
+    }
+
+    /* Experience */
+    #experience {
+      background: #121212;
+      color: #ccc;
+    }
+    #experience h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #a27fff;
+    }
+    .timeline {
+      max-width: 700px;
+      margin: auto;
+      border-left: 3px solid #a27fff;
+      padding-left: 25px;
+      position: relative;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      padding-left: 20px;
+      border-radius: 6px;
+    }
+    .timeline-item:hover {
+      background: #2a1a4d;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: #a27fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #a27fff88;
+      transition: transform 0.3s ease;
+    }
+    .timeline-item:hover::before {
+      transform: scale(1.3);
+    }
+    .timeline-item h3 {
+      color: #fff;
+    }
+    .timeline-item .period {
+      color: #7f5fff;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .timeline-item p {
+      color: #ccc;
+      font-size: 0.95rem;
+      display: none;
+      margin-top: 5px;
+    }
+    /* Show description on click */
+    .timeline-item.active p {
+      display: block;
+    }
+
+    /* Projects */
+    #projects {
+      background: #181818;
+      color: #ccc;
+      padding-bottom: 120px;
+    }
+    #projects h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #a27fff;
+    }
+    .project-grid {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 20px;
+      padding: 0 15px;
+    }
+    .project-card {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px #a27fff33;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px #a27fffbb;
+    }
+    .project-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      filter: brightness(0.8);
+      transition: filter 0.3s ease;
+    }
+    .project-card:hover .project-image {
+      filter: brightness(1);
+    }
+    .project-content {
+      padding: 15px;
+      color: #ddd;
+    }
+    .project-content h3 {
+      margin-bottom: 0.5rem;
+      color: #a27fff;
+    }
+    .project-content p {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+    /* Tooltip / modal info */
+    .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2a1a4ddd;
+      padding: 10px;
+      border-radius: 8px;
+      width: 280px;
+      font-size: 0.9rem;
+      color: #eee;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 0 15px #a27fffcc;
+      text-align: left;
+    }
+    .project-card:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Services */
+    #services {
+      background: #121212;
+      color: #ccc;
+      padding-bottom: 120px;
+    }
+    #services h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #a27fff;
+    }
+    .services-list {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 0 15px;
+    }
+    .service-card {
+      background: #222;
+      padding: 25px;
+      border-radius: 15px;
+      width: 260px;
+      box-shadow: 0 0 15px #a27fff33;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+      text-align: center;
+    }
+    .service-card:hover {
+      box-shadow: 0 0 30px #a27fffcc;
+    }
+    .service-icon {
+      font-size: 40px;
+      color: #a27fff;
+      margin-bottom: 15px;
+    }
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      color: #a27fff;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    /* Contact */
+    #contact {
+      background: #181818;
+      color: #ccc;
+      padding-bottom: 120px;
+    }
+    #contact h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #a27fff;
+    }
+    #contact .contact-info {
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+    #contact .contact-info a {
+      color: #61dafb;
+      font-weight: 600;
+    }
+    #contact form {
+      max-width: 600px;
+      margin: auto;
+      background: #222;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px #a27fff55;
+    }
+    #contact label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #a27fff;
+    }
+    #contact input, 
+    #contact textarea {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #121212;
+      color: #eee;
+      box-shadow: inset 0 0 6px #a27fff44;
+      resize: vertical;
+      transition: box-shadow 0.3s ease;
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: none;
+      box-shadow: 0 0 12px #a27fffcc;
+    }
+    #contact button {
+      background: #a27fff;
+      border: none;
+      padding: 12px 30px;
+      color: #4b0082;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px #a27fff88;
+      transition: background-color 0.3s ease;
+    }
+    #contact button:hover {
+      background-color: #7f5fff;
+      color: white;
+    }
+    /* Social icons */
+    .social-links {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .social-links a {
+      color: #a27fff;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #61dafb;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .services-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service-card, .project-card {
+        width: 100%;
+      }
+      #home h1 {
+        font-size: 2rem;
+      }
+      #home p {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fillSkill {
+      to {width: var(--skill-level);}
+    }
+    @keyframes pulse {
+      0%, 100% {opacity: 0.2;}
+      50% {opacity: 0.35;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME (Hero) -->
+  <section id="home">
+    <div id="particles"></div>
+    <h1>Hi, I’m Jayagobiga, a Passionate Developer</h1>
+    <p>Specializing in Flutter &amp; .NET full-stack development</p>
+    <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <p class="bio">
+      I’m a final-year Computer Science engineering student at SIMATS Engineering, graduating in 2025. I love coding, problem-solving, and continuously learning new technologies.
+    </p>
+
+    <h3>Technical Skills</h3>
+    <div class="skills">
+      <div class="skill">Flutter</div>
+      <div class="skill">Dart</div>
+      <div class="skill">.NET</div>
+      <div class="skill">C#</div>
+      <div class="skill">ASP.NET MVC</div>
+      <div class="skill">PHP</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">HTML/CSS</div>
+      <div class="skill">SQL</div>
+      <div class="skill">UI/UX Design</div>
+    </div>
+
+    <h3>Skill Levels</h3>
+    <div>
+      <div class="skill-label">Flutter</div>
+      <div class="skill-bar"><div class="skill-level" style="--skill-level: 90%; width: 90%;"></div></div>
+      <div class="skill-label">.NET</div>
+      <div class="skill-bar"><div class="skill-level" style="--skill-level: 85%; width: 85%;"></div></div>
+      <div class="skill-label">HTML/CSS</div>
+      <div class="skill-bar"><div class="skill-level" style="--skill-level: 75%; width: 80%;"></div></div>
+      <div class="skill-label">SQL</div>
+      <div class="skill-bar"><div class="skill-level" style="--skill-level: 80%; width: 80%;"></div></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container">
+    <h2>Experience</h2>
+      <div class="timeline-item" onclick="toggleDetails(this)">
+        <h3>.NET Developer Intern - Accenture,Bangalore</h3>
+        <div class="period">Feb 2025 - June 2025</div>
+        <p>Worked on building a .NET web app, including backend APIs and frontend pages using ASP.NET MVC.</p>
+      </div>
+      <div class="timeline-item" onclick="toggleDetails(this)">
+        <h3>Data Handling Intern - Armsoftech,Chennai</h3>
+        <div class="period">Jan 2024 - Feb 2024</div>
+        <p>Assisted in Data Handling work collaborating with operations team to do a project..</p>
+      </div>
+ <div class="timeline-item" onclick="toggleDetails(this)">
+        <h3>Web Development Intern – Codebind Technology,Chennai</h3>
+        <div class="period">Aug 2022 - Sep 2022</div>
+        <p>Assisted in Web Development projects, enhancing frontend and backend functionalities. Collaborated with a team to develop and deploy 
+software solutions.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid container">
+      <div class="project-card">
+          <div class="project-content">
+          <h3>Lyra(Infertility App)</h3>
+          <p>Developed using Flutter & PHP to assist infertility patients with guided breathing medications and period tracking.
+Designed intuitive UI and implemented backend functionalities using Php and Sql. Successfully published to the 
+Google Play Store</p>
+          <div class="tooltip">Built with Dart & Flutter. Includes responsive UI and animations.</div>
+        </div>
+      </div>
+      <div class="project-card">
+          <div class="project-content">
+          <h3>ContactBook App</h3>
+          <p>Built a responsive ASP.NET MVC web app to manage personal contacts with CRUD operations, categorized groups (Family, Friends,
+Work), and birthday reminders sorted by upcoming dates.</p>
+          <div class="tooltip">Implemented ASP.Net and EF Core.</div>
+        </div>
+      </div>
+      <div class="project-card">
+          <div class="project-content">
+          <h3>Multiple Sclerosis Detection using ML</h3>
+          <p>Analyzed the Multiple Sclerosis Dataset using machine learning algorithms in Python with scikit-learn to identify patterns and 
+predict outcomes effectively.</p>
+          <div class="tooltip">Includes NLP features, text classification, and Machine Learning.</div>
+        </div>
+      </div>
+<div class="project-card">
+          <div class="project-content">
+          <h3>Automatic Beverage</h3>
+          <p>The project also offers customizable product options, setting new standards for efficiency, quality, sustainability, and reducing time 
+complexity. It can be activated by using serial Bluetooth Terminal.</p>
+          <div class="tooltip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="container">
+    <h2>Services</h2>
+    <div class="services-list">
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Web Development</h3>
+        <p>Building responsive and modern web applications using .NET, React, and PHP.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Mobile Apps</h3>
+        <p>Cross-platform mobile development with Flutter for Android and iOS.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Content Writing</h3>
+        <p>Creating Contents for the development of the Applications</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>UI/UX Design</h3>
+        <p>Designing intuitive and engaging user interfaces with modern aesthetics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <h2>Contact Me</h2>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:vijayagobiga@gmail.com">vijayagobiga@gmail.com</a></p>
+      <p>Phone: <a href="tel:+918903705958">+91 89037 05958</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/jaya-gobiga-9093bb283/" target="_blank" rel="noopener">Linkedin Jayagobiga</a></p>
+<p>Github: <a href="https://github.com/Jayagobiga" target="_blank" rel="noopener">Github Jayagobiga</a></p>
+
+    </div>
+    <form action="https://formsubmit.co/192110149.sse@gmail.com" method="POST">
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" required placeholder="Your Name" />
+
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" required placeholder="Your Email" />
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+
+  <!-- Optional: Disable captcha -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- Optional: Redirect after submit -->
+  <input type="hidden" name="_next" value="thankyou.html">
+
+  <button type="submit">Send Message</button>
+</form>
+
+  </section>
+
+  <script>
+    // Navbar active link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Timeline item click toggle description
+    function toggleDetails(item) {
+      item.classList.toggle('active');
+    }
+
+    // Contact form submit - example: just alert, no backend
+    function submitForm(e) {
+      e.preventDefault();
+      alert("Thank you for reaching out! I'll get back to you soon.");
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
