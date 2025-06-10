@@ -117,6 +117,53 @@
     }
 
     /* About */
+    .about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.about-left {
+  flex: 2;
+}
+
+.about-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #a27fff;
+  box-shadow: 0 0 20px #a27fff88;
+}
+
+.skills-heading {
+  text-align: center;
+  color: #a27fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .about-left {
+    width: 100%;
+  }
+}
+
     #about {
       background: #181818;
       color: #ccc;
@@ -494,6 +541,88 @@
       0%, 100% {opacity: 0.2;}
       50% {opacity: 0.35;}
     }
+    .hero-section {
+  background: linear-gradient(135deg, #1f1f38, #4b0082);
+  padding: 100px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.hero-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #a27fff;
+  box-shadow: 0 0 20px #a27fff88;
+}
+
+.hero-right {
+  flex: 2;
+  color: #eee;
+}
+
+.hero-right h1 {
+  font-size: 2.8rem;
+  color: #a27fff;
+}
+
+.hero-right .highlight {
+  color: #fff;
+}
+
+.hero-right p {
+  font-size: 1.2rem;
+  margin: 15px 0;
+  color: #ccc;
+}
+
+.hero-right button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  background: #a27fff;
+  color: #4b0082;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #a27fff88;
+  transition: background-color 0.3s ease;
+}
+
+.hero-right button:hover {
+  background-color: #7f5fff;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-right h1 {
+    font-size: 2rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -511,46 +640,49 @@
   </nav>
 
   <!-- HOME (Hero) -->
-  <section id="home">
-    <div id="particles"></div>
-    <h1>Hi, I’m Jayagobiga, a Passionate Developer</h1>
-    <p>Specializing in Flutter &amp; .NET full-stack development</p>
-    <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
-  </section>
+ <section id="home" class="hero-section">
+  <div class="hero-container">
+    <div class="hero-left">
+      <img src="https://github.com/Jayagobiga/jayagobiga-portfolio/blob/main/Jayagobiga%20profile.jpg?raw=true" alt="Your Photo" class="hero-image" />
+    </div>
+    <div class="hero-right">
+      <h1>Hello, I’m <span class="highlight">Jayagobiga</span></h1>
+      <p>Passionate Flutter & .NET Developer<br>Final Year Student • SIMATS</p>
+      <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+        View My Work
+      </button>
+    </div>
+  </div>
+</section>
 
   <!-- ABOUT -->
-  <section id="about" class="container">
-    <h2>About Me</h2>
-    <p class="bio">
-      I’m a final-year Computer Science engineering student at SIMATS Engineering, graduating in 2025. I love coding, problem-solving, and continuously learning new technologies.
-    </p>
-
-    <h3>Technical Skills</h3>
-    <div class="skills">
-      <div class="skill">Flutter</div>
-      <div class="skill">Dart</div>
-      <div class="skill">.NET</div>
-      <div class="skill">C#</div>
-      <div class="skill">ASP.NET MVC</div>
-      <div class="skill">PHP</div>
-      <div class="skill">JavaScript</div>
-      <div class="skill">HTML/CSS</div>
-      <div class="skill">SQL</div>
-      <div class="skill">UI/UX Design</div>
+<section id="about">
+  <div class="about-container container">
+    <div class="about-left">
+      <h2>About Me</h2>
+      <p class="bio">
+        I’m a final-year Computer Science engineering student at SIMATS Engineering, graduating in 2025. I love coding, problem-solving, and continuously learning new technologies.
+      </p>
     </div>
-
-    <h3>Skill Levels</h3>
-    <div>
-      <div class="skill-label">Flutter</div>
-      <div class="skill-bar"><div class="skill-level" style="--skill-level: 90%; width: 90%;"></div></div>
-      <div class="skill-label">.NET</div>
-      <div class="skill-bar"><div class="skill-level" style="--skill-level: 85%; width: 85%;"></div></div>
-      <div class="skill-label">HTML/CSS</div>
-      <div class="skill-bar"><div class="skill-level" style="--skill-level: 75%; width: 80%;"></div></div>
-      <div class="skill-label">SQL</div>
-      <div class="skill-bar"><div class="skill-level" style="--skill-level: 80%; width: 80%;"></div></div>
+    <div class="about-right">
+      <img src="https://github.com/Jayagobiga/jayagobiga-portfolio/blob/main/Jayagobiga%20profile.jpg?raw=true" alt="About Me Image" class="about-image" />
     </div>
-  </section>
+  </div>
+
+  <h3 class="skills-heading">Technical Skills</h3>
+  <div class="skills">
+    <div class="skill">Flutter</div>
+    <div class="skill">Dart</div>
+    <div class="skill">.NET</div>
+    <div class="skill">C#</div>
+    <div class="skill">ASP.NET MVC</div>
+    <div class="skill">PHP</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">HTML/CSS</div>
+    <div class="skill">SQL</div>
+    <div class="skill">UI/UX Design</div>
+  </div>
+</section>
 
   <!-- EXPERIENCE -->
   <section id="experience" class="container">
