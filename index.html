@@ -7,9 +7,10 @@
   <style>
     /* Reset and base */
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
     body {
       background-color: #121212;
@@ -21,9 +22,13 @@
       color: #61dafb;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
+    a.project-content {
+      text-decoration: none;
     }
+    a.project-content:hover {
+      text-decoration: none;
+    }
+
     h1, h2, h3, h4 {
       color: #a27fff;
       margin-bottom: 0.5rem;
@@ -38,11 +43,11 @@
       padding: 0 15px;
     }
     /* Navbar */
-    nav {
+   nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       background: #1a1a1a;
-      padding: 1rem 15px;
+      padding: 1rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.7);
       z-index: 1000;
     }
@@ -50,70 +55,105 @@
       display: flex;
       justify-content: center;
       list-style: none;
-      gap: 25px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-    nav ul li a {
+   nav a {
       font-weight: bold;
       color: #ddd;
       padding: 0.25rem 0.5rem;
       transition: color 0.3s ease;
     }
-    nav ul li a:hover,
-    nav ul li a.active {
+    nav a:hover,
+    nav a.active {
       color: #a27fff;
+    }
+    @media (max-width: 640px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        background-color: #1a1a1a;
+        padding: 1rem;
+      }
     }
     /* Sections */
     section {
-      padding: 100px 0 60px; /* top padding to offset fixed nav */
-      min-height: 100vh;
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
     /* Hero */
-    #home {
+     .hero-section {
       background: linear-gradient(135deg, #1f1f38, #4b0082);
-      color: #fff;
+      padding: 100px 20px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      justify-content: center;
+      color: #fff;
+      flex-wrap: wrap;
     }
-    #home h1 {
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #a27fff;
+      box-shadow: 0 0 20px #a27fff88;
+    }
+
+    .hero-right {
+      flex: 2;
+      color: #eee;
+    }
+
+    .hero-right h1 {
       font-size: 2.8rem;
-      animation: fadeInUp 1.2s ease forwards;
+      color: #a27fff;
     }
-    #home p {
-      font-size: 1.3rem;
-      margin-top: 15px;
-      color: #aaa;
-      animation: fadeInUp 1.4s ease forwards;
+
+    .hero-right .highlight {
+      color: #fff;
     }
-    #home button {
-      margin-top: 25px;
+
+    .hero-right p {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      color: #ccc;
+    }
+
+    .hero-right button {
+      margin-top: 20px;
       padding: 12px 30px;
       font-size: 1rem;
-      color: #4b0082;
       background: #a27fff;
+      color: #4b0082;
+      font-weight: bold;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 5px 15px #a27fff88;
       transition: background-color 0.3s ease;
-      animation: fadeInUp 1.6s ease forwards;
     }
-    #home button:hover {
+
+    .hero-right button:hover {
       background-color: #7f5fff;
+      color: white;
     }
-    /* Particle effect placeholder */
-    #particles {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      opacity: 0.2;
-      background: radial-gradient(circle at center, #a27fff 5%, transparent 70%);
-      animation: pulse 5s ease-in-out infinite alternate;
-      z-index: 0;
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-right h1 {
+        font-size: 2rem;
+      }
     }
 
     /* About */
@@ -336,6 +376,7 @@
       filter: brightness(1);
     }
     .project-content {
+      display: block;
       padding: 15px;
       color: #ddd;
     }
