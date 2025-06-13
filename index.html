@@ -5,6 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jayagobiga V I - Portfolio</title>
   <style>
+  nav {
+    background: #1a1a1a;
+    padding: 1rem 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+
+  .nav-container {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: #a27fff;
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: #a27fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column;
+      background-color: #1a1a1a;
+      width: 100%;
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .nav-links.show {
+      display: flex;
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
     /* Reset and base */
     * {
       margin: 0;
@@ -670,7 +732,10 @@
 
   <!-- NAVIGATION -->
   <nav>
-    <ul>
+  <div class="nav-container">
+    <div class="logo" style="color: #a27fff; font-weight: bold;">Jayagobiga</div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#home" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -678,7 +743,8 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </nav>
+  </div>
+</nav>
 
   <!-- HOME (Hero) -->
  <section id="home" class="hero-section">
@@ -905,6 +971,11 @@ software solutions.</p>
       e.target.reset();
     }
   </script>
-
+ <script>
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("show");
+  }
+</script>
 </body>
 </html>
